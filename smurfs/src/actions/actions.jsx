@@ -64,7 +64,39 @@ export const handleChange = event => ({
   type: HandleChange,
   payload: event.target
 });
-
 export const refreshList = () => ({
   type: RefreshList
 });
+
+export const startEdit = event => ({
+  type: EditSmurf_Start,
+  payload: event.target.getAttribute("name")
+});
+export const handleDelete = event => dispatch => {
+  console.log("handleDelete:", event.target);
+  const id = event.target.getAttribute("name");
+  dispatch({ type: DeleteSmurf_Start });
+  axios
+    .delete(`${baseUrl}/${id}`)
+    .then(res_del => {
+      console.log(res_del);
+      dispatch({ type: DeleteSmurf_Success, payload: res_del.data });
+    })
+    .catch(e => dispatch({ type: DeleteSmurf_Fail, payload: e }));
+};
+export const handleEdit = event => dispatch => {
+  console.log("handleEdit:", event.target);
+  const id = event.target.getAttribute("name");
+  const smurfEdit = {
+    name: event.target[0].value,
+    age: event.target[1].value,
+    height: event.target[2].value
+  };
+  axios
+    .put(`${baseUrl}/${id}`, smurfEdit)
+    .then(res_edit => {
+      console.log(res_edit);
+      dispatch({ type: EditSmurf_Success, payload: res_edit.data });
+    })
+    .catch(e => ({ type: EditSmurf_Fail, payload: e }));
+};
