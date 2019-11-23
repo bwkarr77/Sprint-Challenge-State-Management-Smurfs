@@ -7,8 +7,16 @@ import {
   startEdit
 } from "../actions/actions";
 
-const Smurf = props => {
-  const smurf = props.smurf;
+const Smurf = ({
+  editSmurf,
+  handleChange,
+  isEditing,
+  smurf,
+  handleDelete,
+  handleEdit,
+  startEdit
+}) => {
+  // const smurf = props.smurf;
   return (
     <div className="smurf">
       <h4>{smurf.name}</h4>
