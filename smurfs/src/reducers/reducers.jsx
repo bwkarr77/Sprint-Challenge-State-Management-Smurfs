@@ -16,7 +16,7 @@ import {
 
 const initialState = {
   smurfList: [],
-  smurfNew: {},
+  newSmurf: {},
   isGetting: false,
   errMsg: "",
   isAdding: false,
