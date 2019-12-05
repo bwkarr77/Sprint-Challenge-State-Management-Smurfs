@@ -19,9 +19,6 @@ export const DeleteSmurf_Fail = "DeleteSmurf_Fail";
 export const EditSmurf_Start = "EditSmurf_Start";
 export const EditSmurf_Success = "EditSmurf_Success";
 export const EditSmurf_Fail = "EditSmurf_Fail";
-export const a = "a";
-export const b = "b";
-export const c = "c";
 //handle consts
 
 const baseUrl = "http://localhost:3333/smurfs";
@@ -95,7 +92,7 @@ export const handleEdit = event => dispatch => {
   axios
     .put(`${baseUrl}/${id}`, smurfEdit)
     .then(res_edit => {
-      console.log(res_edit);
+      console.log("smurf_edit", res_edit);
       dispatch({ type: EditSmurf_Success, payload: res_edit.data });
     })
     .catch(e => ({ type: EditSmurf_Fail, payload: e }));
